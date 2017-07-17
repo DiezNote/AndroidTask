@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -17,6 +18,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button buttonClean;
     EditText editText;
     final String TAG = "lifecycle";
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Intent intent = new Intent(this,Second.class);
         switch (v.getId()) {
             case R.id.buttonOtpr:
+                if(editText.getText().toString().equals("")){
+                    break;
+                   /*toast.makeText(getApplicationContext(),"Заполните текстовое поле", Toast.LENGTH_SHORT);
+                toast.show();*/
+                }
+                    else{
                 intent.putExtra("text",editText.getText().toString());
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 1);}
                 break;
             case R.id.buttonClean:
                 editText.setText("");
